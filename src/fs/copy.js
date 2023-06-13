@@ -1,12 +1,10 @@
-import { readdir, writeFile, mkdir, readFile, copyFile } from 'fs/promises';
+import { readdir, mkdir, copyFile } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { ERROR_MESSAGE } from './utils.js';
 
 const path1 = fileURLToPath(new URL('files', import.meta.url));
 const path2 = fileURLToPath(new URL('copy_files', import.meta.url));
-
-console.log(import.meta.url);
 
 const copy = async () => {
   try {
