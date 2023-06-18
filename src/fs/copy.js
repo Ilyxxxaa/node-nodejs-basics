@@ -14,7 +14,7 @@ const copy = async () => {
       await copyFile(path.resolve(path1, file), path.resolve(path2, file));
     });
   } catch (err) {
-    throw Error(ERROR_MESSAGE);
+    throw new Error(ERROR_MESSAGE);
   }
 };
 

@@ -10,7 +10,7 @@ const create = async () => {
     await writeFile(url, CONTENT, { flag: 'wx' });
   } catch (err) {
     if (await isPathExist(url)) {
-      throw Error('FS operation failed');
+      throw new Error('FS operation failed');
     }
   }
 };
