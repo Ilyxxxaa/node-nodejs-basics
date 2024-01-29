@@ -1,18 +1,19 @@
-import os from 'os';
-import { fileURLToPath } from 'url';
-import { Worker } from 'worker_threads';
+import os from "os";
+import { fileURLToPath } from "url";
+import { Worker } from "worker_threads";
 
-const pathToWorker = fileURLToPath(new URL('./worker.js', import.meta.url));
+const pathToWorker = fileURLToPath(new URL("./worker.js", import.meta.url));
 
 const performCalculations = async () => {
   const arrayOfCPU = os.cpus();
+  console.log(arrayOfCPU);
   let i = 10;
 
   const workersArray = arrayOfCPU.map((_, index) => {
     return new Promise((resolve) => {
       const worker = new Worker(pathToWorker, { workerData: index + i });
-      worker.on('message', (data) => resolve({ status: 'resolved', data }));
-      worker.on('error', () => resolve({ status: 'error', data: null }));
+      worker.on("message", (data) => resolve({ status: "resolved", data }));
+      worker.on("error", () => resolve({ status: "error", data: null }));
     });
   });
 
